@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'chill-appv3',
+  appId: 'com.example.chillapp',
+  appName: 'Chill App',
   webDir: 'www'
 };
 

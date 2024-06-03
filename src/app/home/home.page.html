@@ -14,7 +14,18 @@
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-button (click)="takePicture()">Take Picture</ion-button>
+      <img [src]="imageUrl" *ngIf="imageUrl" alt="Taken Picture">
+
+    <ion-button (click)="startRecognition()" *ngIf="!recording">
+      <ion-icon name="mic-outline" slot="start"></ion-icon>
+      Start Speech Recognition
+    </ion-button>
+
+    <ion-button (click)="stopRecognition()" *ngIf="recording">
+      Stop Speech Recognition
+    </ion-button>
+
+    <p>{{ result }}</p>
   </div>
 </ion-content>
