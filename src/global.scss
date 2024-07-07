@@ -35,3 +35,32 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+@font-face {
+  font-family: 'chill-app-font';
+  src: url('./assets/fonts/Margarine-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'title-font';
+  src: url('./assets/fonts/AntonSC-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'chill-app-font', sans-serif;
+  background: url('./assets/images/background.jpg') center/cover no-repeat var(--color-primary);  
+}
+
+#background-content {
+  left: 0px;
+  right: 0px;
+  top: calc(var(--offset-top) * -1);
+  bottom: calc(var(--offset-bottom) * -1);
+  position: absolute;
+  background: unset !important;
+}
+  

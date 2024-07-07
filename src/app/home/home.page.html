@@ -1,30 +1,39 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <div class="logo-holder">
+    <ion-row class="logo-row">
+      <ion-col>
+        <ion-button (click)="onMenuClick()" class="icon-card-menu">
+          <ion-icon name="menu-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="onVolumeClick()" class="icon-card-volume">
+          <ion-icon name="{{ volumeIcon }}"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
   <div id="container">
-    <ion-button (click)="takePicture()">Take Picture</ion-button>
-      <img [src]="imageUrl" *ngIf="imageUrl" alt="Taken Picture">
+    <div class="content">
+      <h2 class="text_shadows">Chill App</h2>
+    </div>
 
-    <ion-button (click)="startRecognition()" *ngIf="!recording">
+    <div class="button-holder">
+      <ion-button (click)="takePicture()"> 
+        <ion-icon slot="end" name="camera-outline"></ion-icon>
+        Take Picture
+      </ion-button>
+    </div>
+      <!-- <img [src]="imageUrl" *ngIf="imageUrl" alt="Taken Picture"> -->
+
+    <!-- <ion-button (click)="startRecognition()" *ngIf="!recording">
       <ion-icon name="mic-outline" slot="start"></ion-icon>
       Start Speech Recognition
-    </ion-button>
-
+    </ion-button> -->
+<!-- 
     <ion-button (click)="stopRecognition()" *ngIf="recording">
       Stop Speech Recognition
-    </ion-button>
+    </ion-button> -->
 
     <p>{{ result }}</p>
   </div>
