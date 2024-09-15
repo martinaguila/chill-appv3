@@ -1,5 +1,16 @@
 <div class="main-container">
-  <ion-button (click)="onClickBack()">
-    Back
-  </ion-button>
+  <div class="logo-holder">
+    <ion-row class="logo-row">
+      <ion-col>
+        <ion-button (click)="onClickBack()" class="icon-card-menu">
+          <ion-icon name="arrow-back-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <!-- <ion-col>
+        <ion-button (click)="onVolumeClick()" class="icon-card-volume">
+          <ion-icon name="{{ volumeIcon }}"></ion-icon>
+        </ion-button>
+      </ion-col> -->
+    </ion-row>
+  </div>
 </div>

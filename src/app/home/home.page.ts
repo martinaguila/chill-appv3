@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Camera, CameraResultType, CameraSource  } from '@capacitor/camera';
 import { TextToSpeech } from '@capacitor-community/text-to-speech';
 import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 import { BgMusicService } from '../services/bg-music/bg-music.service';
@@ -58,22 +57,6 @@ export class HomePage {
     this.recording = false;
     await SpeechRecognition.stop();
   }
-
-  // async takePicture() {
-  //   try {
-  //     const image = await Camera.getPhoto({
-  //       quality: 90,
-  //       allowEditing: false,
-  //       resultType: CameraResultType.Uri,
-  //       source: CameraSource.Camera // Use CameraSource.Photos for gallery access
-  //     });
-
-  //     // Display the taken picture
-  //     this.imageUrl = image.webPath; // Assuming you are using Angular and imageUrl is a property bound to an img tag in your HTML
-  //   } catch (error) {
-  //     console.error('Error taking picture', error);
-  //   }
-  // }
 
   async takePicture() {
     this.buttonService.playButtonClickSound();

@@ -3,3 +3,27 @@
     // background-image: linear-gradient(to bottom, #ff6347, #ffd700);
     background: url('../../../assets/images/background.jpg') center/cover no-repeat var(--color-primary);
 }
+
+.logo-holder {
+    position: relative;
+  }
+  
+  .logo-row {
+    position: absolute;
+    width: 100%;
+  }
+  
+  .icon-card-menu {
+    position: absolute;
+    left: 5.5%;
+    top: 15px;
+    height: 14vw;
+    width: 14vw;
+  }
+
+  ion-button {
+    width: 150px;
+    --border-radius: 10px;
+    font-family: "chill-app-font";
+    --background: linear-gradient(to right, #7703B3, #FE00BE);
+  }

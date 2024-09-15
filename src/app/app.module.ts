@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { WelcomeComponent } from './modals/welcome/welcome.component';
 import { MenuComponent } from './modals/menu/menu.component';
 import { PictureComponent } from './modals/picture/picture.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,12 @@ import { PictureComponent } from './modals/picture/picture.component';
     MenuComponent,
     PictureComponent
   ],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    HttpClientModule
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
