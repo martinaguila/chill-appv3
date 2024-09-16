@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TextToSpeech } from '@capacitor-community/text-to-speech';
-import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 import { BgMusicService } from '../services/bg-music/bg-music.service';
 import { MenuComponent } from '../modals/menu/menu.component';
 import { ModalController } from '@ionic/angular';
@@ -14,9 +13,6 @@ import { ButtonFxService } from '../services/button-fx/button-fx.service';
 })
 export class HomePage {
 
-  imageUrl: any;
-  recording: boolean = false;
-  result: any;
   private isVolume: boolean;
   public volumeIcon: string;
 
@@ -25,37 +21,12 @@ export class HomePage {
     private modalController: ModalController,
     private buttonService: ButtonFxService
   ) {
-    this.imageUrl = "";
-    SpeechRecognition.requestPermission();
     this.isVolume = true;
     this.volumeIcon = 'volume-high-outline';
   }
 
   ngOnInit() {
     this.speakGreeting();
-  }
-
-  async startRecognition() {
-    const { available } = await SpeechRecognition.available();
-    
-    if (available) {
-      this.recording = true;
-      SpeechRecognition.start({
-        popup: false,
-        partialResults: true,
-        language: 'en-US'
-      });
-
-      SpeechRecognition.addListener('partialResults', (data: any) => {
-        alert(data.matches);
-        this.result = data.matches;
-      });
-    }
-  }
-
-  async stopRecognition() {
-    this.recording = false;
-    await SpeechRecognition.stop();
   }
 
   async takePicture() {

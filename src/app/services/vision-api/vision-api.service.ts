@@ -9,7 +9,7 @@ export class VisionApiService {
   constructor(private http: HttpClient) { }
 
   sendToVisionApi(base64Image: string) {
-    const visionApiUrl = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyA16UYUHW479vgMM3xmQwia-Pt276WpdVU';
+    const visionApiUrl = ""; // to commit
     
     const requestBody = {
       requests: [
@@ -19,7 +19,7 @@ export class VisionApiService {
           },
           features: [
             {
-              type: "LABEL_DETECTION", // Choose the type of feature you need
+              type: "OBJECT_LOCALIZATION",
               maxResults: 10
             }
           ]
@@ -28,8 +28,15 @@ export class VisionApiService {
     };
   
     this.http.post(visionApiUrl, requestBody).subscribe((response: any) => {
-      console.log('Vision API Response:', response);
-      alert('Vision API Response:'+ response)
+      // Extract descriptions from the response
+      alert(JSON.stringify(response))
+      const descriptionsArray = response.responses[0].localizedObjectAnnotations.map((label: any) => label.name);
+
+      // Display the descriptions array
+      console.log('Descriptions:', descriptionsArray);
+      
+      // Optionally, show the array in an alert or use it elsewhere in your app
+      alert('Descriptions: ' + JSON.stringify(descriptionsArray));
     }, (error: any) => {
       console.error('Error with Vision API:', error);
       alert('Error with Vision API:'+ JSON.stringify(error));
