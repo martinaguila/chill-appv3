@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { LoaderService } from '../loader/loader.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VisionApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private loaderService: LoaderService
+    ) { }
 
   sendToVisionApi(base64Image: string) {
-    const visionApiUrl = ""; // to commit
+    this.loaderService.showLoader();
+    const visionApiUrl = "https://vision.googleapis.com/v1/images:annotate?key=";
     
     const requestBody = {
       requests: [
@@ -37,9 +42,11 @@ export class VisionApiService {
       
       // Optionally, show the array in an alert or use it elsewhere in your app
       alert('Descriptions: ' + JSON.stringify(descriptionsArray));
+      this.loaderService.hideLoader();
     }, (error: any) => {
       console.error('Error with Vision API:', error);
       alert('Error with Vision API:'+ JSON.stringify(error));
+      this.loaderService.hideLoader();
     });
   }
 }
