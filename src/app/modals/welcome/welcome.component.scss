@@ -9,7 +9,7 @@ ion-card {
   background: url('../../../assets/images/background.jpg') center/cover no-repeat var(--color-primary);  
 }
 
-h3 {
+h1 {
   text-align: center;
   // font-family: fangsong;
   color: white;
@@ -28,12 +28,7 @@ h3 {
   margin: 0 auto;
 }
 
-ion-button {
-  width: 150px;
-  --border-radius: 10px;
-  font-family: "chill-app-font";
-  --background: linear-gradient(to right, #7703B3, #FE00BE);
-}
+// --background: linear-gradient(to right, #7703B3, #FE00BE);
 
 .content-holder {
   border-top-left-radius: 10vw;

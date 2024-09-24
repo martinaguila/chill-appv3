@@ -5,6 +5,7 @@ import { MenuComponent } from '../modals/menu/menu.component';
 import { ModalController } from '@ionic/angular';
 import { PictureComponent } from '../modals/picture/picture.component';
 import { ButtonFxService } from '../services/button-fx/button-fx.service';
+import { GreetingsFxService } from '../services/greetings-fx/greetings-fx.service';
 
 @Component({
   selector: 'app-home',
@@ -19,14 +20,15 @@ export class HomePage {
   constructor(
     private bgMusicService: BgMusicService,
     private modalController: ModalController,
-    private buttonService: ButtonFxService
+    private buttonService: ButtonFxService,
+    private greetingsFxService: GreetingsFxService
   ) {
     this.isVolume = true;
     this.volumeIcon = 'volume-high-outline';
   }
 
   ngOnInit() {
-    this.speakGreeting();
+    this.getGreeting();
   }
 
   async takePicture() {
@@ -38,21 +40,21 @@ export class HomePage {
     return await modal.present();
   }
 
-  getGreeting(): string {
+  private getGreeting() {
     const hour = new Date().getHours();
     if (hour >= 5 && hour < 12) {
-        return 'Good morning';
+      this.greetingsFxService.playButtonClickSound("good-morning.mp3");  
     } else if (hour >= 12 && hour < 18) {
-        return 'Good afternoon';
+      this.greetingsFxService.playButtonClickSound("good-afternoon.mp3");
     } else {
-        return 'Good evening';
+      this.greetingsFxService.playButtonClickSound("good-evening.mp3");
     }
   }
 
-  async speakGreeting() {
-    const greeting = this.getGreeting();
-    await this.speakText(greeting);
-  }
+  // async speakGreeting() {
+  //   const greeting = this.getGreeting();
+  //   // await this.speakText(greeting);
+  // }
 
   async speakText(text: string) {
     try {

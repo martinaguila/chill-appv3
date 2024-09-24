@@ -4,12 +4,12 @@
   </div>
 
   <div class="content-holder">
-    <h3>{{ welcomeMessages[counter] }}</h3>
+    <h1>{{ welcomeMessages[counter] }}</h1>
 
     <div class="button-holder">
-      <ion-button (click)="buttonOnClick()">
-        <ion-icon slot="end" name="arrow-redo-outline"></ion-icon>
-        Next
+      <ion-button class="app-button" (click)="buttonOnClick()">
+        <ion-icon name="arrow-redo-outline"></ion-icon>
+        <!-- Next -->
       </ion-button>
     </div>
   </div>

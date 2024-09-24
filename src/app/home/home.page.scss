@@ -45,6 +45,7 @@ p {
   top: 15px;
   height: 14vw;
   width: 14vw;
+  color: white;
 }
 
 .icon-card-volume {
@@ -53,6 +54,7 @@ p {
   top: 15px;
   height: 14vw;
   width: 14vw;
+  color: white;
 }
 
 .button-holder {
@@ -170,4 +172,10 @@ body {
   100% {
     transform: translate(0px, 0px);
   }
+}
+
+.gif {
+  width: 85%;
+  margin-top: 20px;
+  border-radius: 10px;
 }

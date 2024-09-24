@@ -19,22 +19,22 @@
       <img [src]="base64Image" alt="Captured Image">
     </div>
     <div class="button-holder2">
-      <ion-button (click)="startRecognition()" *ngIf="!recording">
-        <ion-icon name="mic-outline" slot="end"></ion-icon>
-        Start
+      <ion-button class="app-button" (click)="startRecognition()" *ngIf="!recording">
+        <ion-icon name="mic-outline"></ion-icon>
+        <!-- Start -->
       </ion-button>
 
-      <ion-button (click)="stopRecognition()" *ngIf="recording">
-        <ion-icon name="mic-off-outline" slot="end"></ion-icon>
-        Stop
+      <ion-button class="app-button" (click)="stopRecognition()" *ngIf="recording">
+        <ion-icon name="mic-off-outline"></ion-icon>
+        <!-- Stop -->
       </ion-button>
     </div>
   </div>
 
   <div class="button-holder">
-    <ion-button (click)="takePicture()"> 
-      <ion-icon slot="end" name="camera-outline"></ion-icon>
-      Take Picture
+    <ion-button class="app-button" (click)="takePicture()"> 
+      <ion-icon name="camera-outline"></ion-icon>
+      <!-- Take Picture -->
     </ion-button>
   </div>
 </div>

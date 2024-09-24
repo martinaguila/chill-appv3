@@ -44,6 +44,24 @@
     overflow: hidden; /* Ensure the image doesn't overflow the box */
   }
 
+  $dash-size: 5px;
+$theme-color: #d8bfd8; // Changed theme color to light purple
+$fill-color: beige;
+
+.img-holder {
+  background: lighten($theme-color, 20%);
+  border: $dash-size dashed $theme-color;
+  box-shadow: 0 0 0 ($dash-size / 2) darken($theme-color, 20%),
+              0 0 0 ($dash-size * 2.5) #fff,
+              inset 0 0 0 ($dash-size / 2) darken($theme-color, 20%),
+              0 $dash-size ($dash-size * 2) ($dash-size * 3) rgba(0,0,0,0.5),
+              inset 0 0 0 ($dash-size * 1.2) #fff,
+              inset 0 0 100vw 100vw $fill-color;
+  text-shadow: 0 2px #fff;
+  text-align: center;
+}
+
+
   .img-holder img {
     width: 100%;
     height: 100%;
@@ -60,5 +78,6 @@
   }
 
   .button-holder2 {
+    margin-top: 20px;
     text-align: center;
   }
