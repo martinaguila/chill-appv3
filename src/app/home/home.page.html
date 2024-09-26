@@ -2,31 +2,46 @@
   <div class="logo-holder">
     <ion-row class="logo-row">
       <ion-col>
-        <ion-button (click)="onMenuClick()" class="icon-card-menu">
-          <ion-icon name="menu-outline"></ion-icon>
-        </ion-button>
+        <div class="button-holder2">
+          <div class="img-holder" (click)="onMenuClick()">
+            <img class="top-img" src="../../assets/images/menu.png" alt="">
+          </div>
+        </div>
       </ion-col>
       <ion-col>
-        <ion-button (click)="onVolumeClick()" class="icon-card-volume">
-          <ion-icon name="{{ volumeIcon }}"></ion-icon>
-        </ion-button>
+        <div class="button-holder3">
+          <div class="img-holder" (click)="onVolumeClick()">
+            <img class="top-img" src="{{ volumeIcon }}" alt="">
+          </div>
+        </div>
       </ion-col>
     </ion-row>
   </div>
   <div id="container">
     <div class="content">
-      <h2 class="text_shadows">Chill App</h2>
+      <h1 class="playful" aria-label="Chill App">
+        <span aria-hidden="true">C</span>
+        <span aria-hidden="true">h</span>
+        <span aria-hidden="true">i</span>
+        <span aria-hidden="true">l</span>
+        <span aria-hidden="true">l</span>
+        <span aria-hidden="true"> </span>
+        <span aria-hidden="true">A</span>
+        <span aria-hidden="true">p</span>
+        <span aria-hidden="true">p</span>
+      </h1>
     </div>
-
+    
     <div>
       <img class="gif" src="../../assets/gifs/nerd-observe.gif" >
     </div>
 
-    <div class="button-holder">
-      <ion-button class="app-button" (click)="takePicture()"> 
-        <ion-icon name="camera-outline"></ion-icon>
-        <!-- Take Picture -->
-      </ion-button>
+    <div>
+      <div class="button-holder">
+        <div class="img-holder" (click)="takePicture()">
+          <img class="top-img" src="../../assets/images/camera.png" alt="">
+        </div>
+      </div>
     </div>
   </div>
 </ion-content>

@@ -6,12 +6,14 @@ import { ModalController } from '@ionic/angular';
 import { PictureComponent } from '../modals/picture/picture.component';
 import { ButtonFxService } from '../services/button-fx/button-fx.service';
 import { GreetingsFxService } from '../services/greetings-fx/greetings-fx.service';
+import { ResultComponent } from '../modals/result/result.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage {
 
   private isVolume: boolean;
@@ -24,11 +26,20 @@ export class HomePage {
     private greetingsFxService: GreetingsFxService
   ) {
     this.isVolume = true;
-    this.volumeIcon = 'volume-high-outline';
+    this.volumeIcon = '../../assets/images/speaker.png';
   }
 
   ngOnInit() {
-    this.getGreeting();
+    // this.getGreeting();
+    
+  }
+
+  async waoko() {
+    const modal = await this.modalController.create({
+      component: ResultComponent,
+      cssClass: 'result-modal'
+    });
+    await modal.present(); // Present the modal
   }
 
   async takePicture() {
@@ -38,17 +49,6 @@ export class HomePage {
       cssClass: 'picture-modal'
     });
     return await modal.present();
-  }
-
-  private getGreeting() {
-    const hour = new Date().getHours();
-    if (hour >= 5 && hour < 12) {
-      this.greetingsFxService.playButtonClickSound("good-morning.mp3");  
-    } else if (hour >= 12 && hour < 18) {
-      this.greetingsFxService.playButtonClickSound("good-afternoon.mp3");
-    } else {
-      this.greetingsFxService.playButtonClickSound("good-evening.mp3");
-    }
   }
 
   // async speakGreeting() {
@@ -68,12 +68,14 @@ export class HomePage {
   }
 
   async onMenuClick() {
-    this.buttonService.playButtonClickSound();
-    const modal = await this.modalController.create({
-      component: MenuComponent,
-      cssClass: 'menu-modal'
-    });
-    return await modal.present();
+    // this.buttonService.playButtonClickSound();
+    // const modal = await this.modalController.create({
+    //   component: MenuComponent,
+    //   cssClass: 'menu-modal'
+    // });
+    // return await modal.present();
+
+    this.waoko()
   }
 
   public onVolumeClick(): void {
@@ -81,10 +83,10 @@ export class HomePage {
     this.isVolume = !this.isVolume;
 
     if (this.isVolume) {
-      this.volumeIcon = "volume-high-outline";
+      this.volumeIcon = "../../assets/images/speaker.png";
       this.bgMusicService.unMute();
     } else {
-      this.volumeIcon = "volume-mute-outline";
+      this.volumeIcon = "../../assets/images/muted-speaker.png";
       this.bgMusicService.mute();
     }
   }

@@ -85,3 +85,13 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.result-modal {
+  // --background: rgba(30, 30, 30, 0.95); /* Dark background color */
+  --background: rgba(0, 0, 0, 0.85); 
+  --width: 100%;
+  --height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
