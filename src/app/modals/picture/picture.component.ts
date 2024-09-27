@@ -5,6 +5,8 @@ import { Camera, CameraResultType, CameraSource  } from '@capacitor/camera';
 import { VisionApiService } from 'src/app/services/vision-api/vision-api.service';
 import { SpeechRecognition } from '@capacitor-community/speech-recognition';
 import { LoadingComponent } from '../loading/loading.component';
+import { CustomSearchService } from 'src/app/services/custom-search/custom-search.service';
+import { ResultComponent } from '../result/result.component';
 
 @Component({
   selector: 'app-picture',
@@ -17,11 +19,13 @@ export class PictureComponent  implements OnInit {
   recording: boolean = false;
   result: any;
   private modal: any;
+  searchResults: Array<any> = [];
 
   constructor(
     private modalController: ModalController,
     private buttonService: ButtonFxService,
-    private visionApiService: VisionApiService
+    private visionApiService: VisionApiService,
+    private customSearchService: CustomSearchService
   ) {
     this.base64Image = "";
     SpeechRecognition.requestPermission();
@@ -46,23 +50,63 @@ export class PictureComponent  implements OnInit {
       });
 
       this.base64Image = `data:image/jpeg;base64,${image.base64String}`;
-      this.getSearchResults(this.base64Image);
+      this.getVisionResult(this.base64Image);
 
     } catch (error) {
       console.error('Error taking picture', error);
     }
   }
 
-  private getSearchResults(base64Image: string): void {
+  private getVisionResult(base64Image: string): void {
+    this.openLoader();
     this.visionApiService.sendToVisionApi(base64Image).subscribe(
       (response: any) => {
-        alert(JSON.stringify(response));
+        // alert(JSON.stringify(response));
+
+        // alert(JSON.stringify(response.responses[0].localizedObjectAnnotations[0].name));
+        this.getSearchResult(response.responses[0].localizedObjectAnnotations[0].name);
       },
       (error: any) => {
+        this.closeLoader();
+
         console.error('Error with Vision API:', error);
         alert('Error with Vision API: ' + JSON.stringify(error));
       }
     );
+  }
+
+  getSearchResult(searchText: string) {
+    this.customSearchService.customeSearchApi(searchText).subscribe(
+      (response: any) => {
+        // console.log(response);
+        const newResponse = response.items.slice(0, 3);
+        this.searchResults = newResponse;
+        // alert('asd:'+ JSON.stringify(this.searchResults));
+        this.openResult(this.searchResults, searchText)
+      },
+      (error: any) => {
+        this.closeLoader();
+
+        console.error('Error with Vision API:', error);
+        alert('Error with Vision API: ' + JSON.stringify(error));
+      }
+    );
+  }
+
+  async openResult(searchResult: any, searchText: string) {
+    this.closeLoader();
+    const modal = await this.modalController.create({
+      component: ResultComponent,
+      cssClass: 'result-modal',
+      componentProps: {
+        paramRes: searchResult,
+        paramText: searchText
+      }
+    });
+    await modal.present(); // Present the modal
+    modal.onDidDismiss().then(() => {
+      this.modalController.dismiss();
+    });
   }
 
   async openLoader() {

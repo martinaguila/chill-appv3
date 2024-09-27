@@ -1,16 +1,11 @@
 <div class="main-container">
   <div class="logo-holder">
-    <ion-row class="logo-row">
+    <!-- <ion-row class="logo-row">
       <ion-col>
         <ion-button (click)="onClickBack()" class="icon-card-menu">
           <ion-icon name="arrow-back-circle-outline"></ion-icon>
         </ion-button>
       </ion-col>
-      <!-- <ion-col>
-        <ion-button (click)="onVolumeClick()" class="icon-card-volume">
-          <ion-icon name="{{ volumeIcon }}"></ion-icon>
-        </ion-button>
-      </ion-col> -->
     </ion-row>
   </div>
 
@@ -21,12 +16,10 @@
     <div class="button-holder2">
       <ion-button class="app-button" (click)="startRecognition()" *ngIf="!recording">
         <ion-icon name="mic-outline"></ion-icon>
-        <!-- Start -->
       </ion-button>
 
       <ion-button class="app-button" (click)="stopRecognition()" *ngIf="recording">
         <ion-icon name="mic-off-outline"></ion-icon>
-        <!-- Stop -->
       </ion-button>
     </div>
   </div>
@@ -34,7 +27,6 @@
   <div class="button-holder">
     <ion-button class="app-button" (click)="takePicture()"> 
       <ion-icon name="camera-outline"></ion-icon>
-      <!-- Take Picture -->
     </ion-button>
-  </div>
+  </div> -->
 </div>

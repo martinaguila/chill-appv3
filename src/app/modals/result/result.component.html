@@ -1,24 +1,55 @@
 <div class="container">
-  <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07EF0zWnzu8ZjeXcoUhgOwKyt2gbynifRFGJwBiFK2HJh2XisVtoNfEc&s" alt="">
+  <!-- <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07EF0zWnzu8ZjeXcoUhgOwKyt2gbynifRFGJwBiFK2HJh2XisVtoNfEc&s" alt=""> -->
+  
+  <!-- <div class="slider">
+      <ul>
+          <li>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07EF0zWnzu8ZjeXcoUhgOwKyt2gbynifRFGJwBiFK2HJh2XisVtoNfEc&s">
+          </li>
+          <li>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07EF0zWnzu8ZjeXcoUhgOwKyt2gbynifRFGJwBiFK2HJh2XisVtoNfEc&s">
+          </li>
+          <li>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07EF0zWnzu8ZjeXcoUhgOwKyt2gbynifRFGJwBiFK2HJh2XisVtoNfEc&s">
+          </li>
+          <li>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07EF0zWnzu8ZjeXcoUhgOwKyt2gbynifRFGJwBiFK2HJh2XisVtoNfEc&s">
+          </li>
+      </ul>
+  </div>​ -->
+
+  <div class="card">
+    <div class="fold" *ngFor="let imgRes of paramRes">
+      <div class="card-img-container">
+        <img class="card-img" src="{{ imgRes.image.thumbnailLink }}" alt="">
+      </div>
+    </div>
+  </div>
+  
   <img class="bg-img" src="../../../assets/images/bg-result.jpg" >
 
   <div class="box">
     <div class="box-inner">
-      <h1>{{ resultText }}</h1>
+      <h1>{{ paramText }}</h1>
     </div>
   </div>
 
   <div>
     <div class="button-holder">
-      <div class="img-holder" (click)="speak()">
-        <img class="top-img" src="../../assets/images/camera.png" alt="">
+      <div class="img-holder" (click)="startRecognition()">
+        <img class="top-img" src="{{ micImg }}" alt="">
       </div>
     </div>
   </div>
 
   <div>
     <img class="img-gif" src="{{ gifArr[randomIndex] }}" alt="">
+  </div>
 
+  <div class="button-holder2">
+    <div class="img-holder" (click)="close()">
+      <img class="top-img" src="../../../assets/images/close.png" alt="">
+    </div>
   </div>
 
 </div>
