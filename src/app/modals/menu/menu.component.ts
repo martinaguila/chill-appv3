@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ButtonFxService } from 'src/app/services/button-fx/button-fx.service';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-menu',
@@ -16,9 +17,22 @@ export class MenuComponent  implements OnInit {
 
   ngOnInit() {}
 
-  public onClickBack(): void {
-    this.buttonService.playButtonClickSound();
+  close() {
     this.modalController.dismiss();
+  }
+
+  async openModal(index: number) {
+    const modal = await this.modalController.create({
+      component: PopupComponent,
+      cssClass: 'result-modal',
+      componentProps: {
+        paramIndex: index
+      }
+    });
+    await modal.present(); // Present the modal
+    // modal.onDidDismiss().then(() => {
+    //   this.modalController.dismiss();
+    // });
   }
 
 }

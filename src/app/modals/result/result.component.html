@@ -34,16 +34,28 @@
     </div>
   </div>
 
-  <div>
+  <div *ngIf="!recording">
     <div class="button-holder">
       <div class="img-holder" (click)="startRecognition()">
-        <img class="top-img" src="{{ micImg }}" alt="">
+        <img class="top-img" src="../../../assets/images/mic.png" alt="">
       </div>
     </div>
   </div>
 
-  <div>
+  <div *ngIf="recording">
+    <div class="button-holder">
+      <div class="img-holder" (click)="stopRecognition()">
+        <img class="top-img" src="../../../assets/images/mic-muted.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isMatched && isPressed">
     <img class="img-gif" src="{{ gifArr[randomIndex] }}" alt="">
+  </div>
+
+  <div *ngIf="!isMatched && isPressed">
+    <img class="img-gif" src="../../../assets/gifs/oops-try-again.gif" alt="">
   </div>
 
   <div class="button-holder2">

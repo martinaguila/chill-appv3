@@ -7,6 +7,7 @@ import { PictureComponent } from '../modals/picture/picture.component';
 import { ButtonFxService } from '../services/button-fx/button-fx.service';
 import { GreetingsFxService } from '../services/greetings-fx/greetings-fx.service';
 import { ResultComponent } from '../modals/result/result.component';
+import { SpeakComponent } from '../modals/speak/speak.component';
 
 @Component({
   selector: 'app-home',
@@ -36,8 +37,8 @@ export class HomePage {
 
   async waoko() {
     const modal = await this.modalController.create({
-      component: ResultComponent,
-      cssClass: 'result-modal'
+      component: SpeakComponent,
+      cssClass: 'loader-modal'
     });
     await modal.present(); // Present the modal
   }
@@ -68,14 +69,14 @@ export class HomePage {
   }
 
   async onMenuClick() {
-    this.buttonService.playButtonClickSound();
-    const modal = await this.modalController.create({
-      component: MenuComponent,
-      cssClass: 'menu-modal'
-    });
-    return await modal.present();
+    // this.buttonService.playButtonClickSound();
+    // const modal = await this.modalController.create({
+    //   component: MenuComponent,
+    //   cssClass: 'menu-modal'
+    // });
+    // return await modal.present();
 
-    // this.waoko()
+    this.waoko()
   }
 
   public onVolumeClick(): void {
