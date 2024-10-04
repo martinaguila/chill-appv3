@@ -4,6 +4,8 @@ import { ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { GreetingsFxService } from 'src/app/services/greetings-fx/greetings-fx.service';
 import { SpeakComponent } from '../speak/speak.component';
+import { ButtonFxService } from 'src/app/services/button-fx/button-fx.service';
+import { ConfettiComponent } from '../confetti/confetti.component';
 
 @Component({
   selector: 'app-result',
@@ -33,7 +35,8 @@ export class ResultComponent  implements OnInit {
   constructor(
     private modalController: ModalController,
     private navParams: NavParams,
-    private greetingsFxService: GreetingsFxService
+    private greetingsFxService: GreetingsFxService,
+    private buttonService: ButtonFxService
   ) {
     this.paramRes = this.navParams.get('paramRes');
     this.paramText = this.navParams.get("paramText");
@@ -48,61 +51,66 @@ export class ResultComponent  implements OnInit {
   // }
 
   async startRecognition() {
-
+    this.buttonService.playButtonClickSound();
     const { available } = await SpeechRecognition.available();
-let matchesArr: Array<any> = [];
+    let matchesArr: Array<any> = [];
+    alert(available)
+    if (available) {
+      this.greetingsFxService.playButtonClickSound("say.mp3");        
+      // this.isPressed = true;
+      // this.recording = true;
 
-if (available) {
-  this.greetingsFxService.playButtonClickSound("say.mp3");        
-  // this.isPressed = true;
-  // this.recording = true;
+      SpeechRecognition.start({
+        popup: false,
+        partialResults: true,
+        language: 'en-US'
+      });
+      // Handle partial results (intermediate results during recognition)
+      SpeechRecognition.addListener('partialResults', (data: any) => {
+        const recognizedText = data.matches[0];
+        const paramText = this.paramText;
+        if (recognizedText) matchesArr.push(recognizedText);
 
-  SpeechRecognition.start({
-    popup: false,
-    partialResults: true,
-    language: 'en-US'
-  });
-
-  // Handle partial results (intermediate results during recognition)
-  // SpeechRecognition.addListener('partialResults', (data: any) => {
-  //   const recognizedText = data.matches[0];
-  //   const paramText = this.paramText;
-  //   if (recognizedText) matchesArr.push(recognizedText);
-
-  //   if (matchesArr.includes(paramText.toLowerCase())) {
-  //     this.isMatched = true;
-  //   } else {
-  //     this.isMatched = false;
-  //   }
-  // });
-
-  const modalSpeak = await this.modalController.create({
-    component: SpeakComponent,
-    cssClass: 'loader-modal'
-  });
-  await modalSpeak.present(); // Present the modal
-
-  modalSpeak.onDidDismiss().then(() => {
-    // Listen for the listeningState event to determine if recognition has stopped
-    SpeechRecognition.addListener('listeningState', (data: any) => {
-      alert(JSON.stringify(data))
-      if (data.status === 'stopped') {
-        // Recognition has stopped, handle final logic here
-        if (matchesArr.includes(this.paramText.toLowerCase())) {
-          this.isMatched = true;
-          this.randomIndex = Math.floor(Math.random() * this.gifArr.length);
+        if (matchesArr.includes(paramText.toLowerCase())) {
+          // this.isMatched = true;
         } else {
-          this.isMatched = false;
+          // this.isMatched = false;
         }
+      });
 
-        // Mark recording as finished
-        this.recording = false;
-        this.isPressed = false;
-      }
-    });
-  }); 
-  }
+      const modalSpeak = await this.modalController.create({
+        component: SpeakComponent,
+        cssClass: 'loader-modal'
+      });
+      await modalSpeak.present(); // Present the modal
 
+      modalSpeak.onDidDismiss().then(() => {
+        SpeechRecognition.start({
+          popup: false,
+          partialResults: true,
+          language: 'en-US'
+        });
+        // Listen for the listeningState event to determine if recognition has stopped
+        SpeechRecognition.addListener('listeningState', (data: any) => {
+          alert(JSON.stringify(matchesArr));
+          alert(this.paramText.toLowerCase())
+          if (data.status === 'stopped') {
+            // Recognition has stopped, handle final logic here
+            if (matchesArr.includes(this.paramText.toLowerCase())) {  
+              this.isMatched = true;
+              this.randomIndex = Math.floor(Math.random() * this.gifArr.length);
+              this.openConfetti();
+            } else {
+              this.isMatched = false;
+            }
+
+            // Mark recording as finished
+            // this.recording = false;
+            this.isPressed = true;
+          }
+        });
+      }); 
+    }
   }
 
   async stopRecognition() {
@@ -111,7 +119,16 @@ if (available) {
   }
 
   close() {
+    this.buttonService.playButtonClickSound();
     this.modalController.dismiss();
+  }
+
+  async openConfetti() {
+    const modal = await this.modalController.create({
+      component: ConfettiComponent,
+      cssClass: 'conf-modal'
+    });
+    await modal.present(); // Present the modal
   }
 
 }

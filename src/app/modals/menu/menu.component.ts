@@ -18,10 +18,12 @@ export class MenuComponent  implements OnInit {
   ngOnInit() {}
 
   close() {
+    this.buttonService.playButtonClickSound();
     this.modalController.dismiss();
   }
 
   async openModal(index: number) {
+    this.buttonService.playButtonClickSound();
     const modal = await this.modalController.create({
       component: PopupComponent,
       cssClass: 'result-modal',

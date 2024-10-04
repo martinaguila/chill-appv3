@@ -87,7 +87,9 @@ $color-alpha: #b78846;
 .img-holder {
   background: #E0FFFF;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow:
+  inset -5px -5px 10px rgba(0, 0, 0, 0.3), /* L-shape inner shadow */
+  0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 // --background: linear-gradient(to right, #7703B3, #FE00BE);

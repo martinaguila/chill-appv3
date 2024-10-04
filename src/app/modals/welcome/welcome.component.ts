@@ -6,6 +6,8 @@ import { OpeningFxService } from 'src/app/services/opening-fx/opening-fx.service
 import { GreetingsFxService } from 'src/app/services/greetings-fx/greetings-fx.service';
 import { CustomSearchService } from 'src/app/services/custom-search/custom-search.service';
 import { ResultComponent } from '../result/result.component';
+import { ConfettiComponent } from '../confetti/confetti.component';
+import { ExitComponent } from '../exit/exit.component';
 
 @Component({
   selector: 'app-welcome',
@@ -44,22 +46,42 @@ export class WelcomeComponent  implements OnInit {
     } else {
       this.counter = 4;
     }
-
-    // this.customSearchService.customeSearchApi();
-    // console.log(this.test123.items[0].image.thumbnailLink)
-
-
-
-    // this.getSearchResults()
-    // this.wakoko2()
+    
+    this.openModal()
+    
   }
 
-  async wakoko2() {
-    const modal = await this.modalController.create({
-      component: ResultComponent,
-      cssClass: 'result-modal',
-    });
-    await modal.present(); // Present the modal
+  async openModal() {
+    // const modal = await this.modalController.create({
+    //   component: ResultComponent,
+    //   cssClass: 'result-modal',
+    // });
+    // await modal.present(); // Present the modal
+
+    // const modal = await this.modalController.create({
+    //   component: ConfettiComponent,
+    //   cssClass: 'conf-modal'
+    // });
+    // await modal.present(); // Present the modal
+
+    // const modal = await this.modalController.create({
+    //   component: ResultComponent,
+    //   cssClass: 'result-modal',
+    //   componentProps: {
+    //     paramRes: [],
+    //     paramText: ""
+    //   }
+    // });
+    // await modal.present(); // Present the modal
+    // modal.onDidDismiss().then(() => {
+    //   this.modalController.dismiss();
+    // });
+
+    // const modal = await this.modalController.create({
+    //   component: ExitComponent,
+    //   cssClass: 'exit-modal',
+    // });
+    // await modal.present(); // Present the modal
   }
 
   async wakoko(searchResult: any) {

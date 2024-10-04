@@ -162,7 +162,7 @@ export class PictureComponent  implements OnInit {
     this.closeLoader();
     const modal = await this.modalController.create({
       component: ResultComponent,
-      cssClass: 'result-modal',
+      cssClass: 'exit-modal',
       componentProps: {
         paramRes: searchResult,
         paramText: searchText

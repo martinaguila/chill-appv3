@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { WelcomeComponent } from './modals/welcome/welcome.component';
 import { BgMusicService } from './services/bg-music/bg-music.service';
 import { GreetingsFxService } from './services/greetings-fx/greetings-fx.service';
+import { ExitComponent } from './modals/exit/exit.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
   constructor(
     private modalController: ModalController,
     private bgMusicService: BgMusicService,
-    private greetingsFxService: GreetingsFxService
+    private greetingsFxService: GreetingsFxService,
+    private platform: Platform
   ) {
     this.initializeApp();
     // this.bgMusicService.preloadAudio();
@@ -28,6 +30,11 @@ export class AppComponent {
     // }
 
     this.showWelcomeMessage();
+
+    this.platform.ready().then(() => {
+      // alert(123)
+      this.handleBackButton();
+    });
   }
 
   async showWelcomeMessage() {
@@ -51,5 +58,22 @@ export class AppComponent {
     } else {
       this.greetingsFxService.playButtonClickSound("good-evening.mp3");
     }
+  }
+
+  handleBackButton() {
+    // alert(456)
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      alert('Back button pressed');
+      this.displayExitModal()
+    });
+  }
+
+  async displayExitModal() {
+    alert("modal")
+    const modal = await this.modalController.create({
+      component: ExitComponent,
+      cssClass: 'exit-modal',
+    });
+    await modal.present(); // Present the modal
   }
 }

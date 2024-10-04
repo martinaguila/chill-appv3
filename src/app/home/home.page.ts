@@ -69,12 +69,12 @@ export class HomePage {
   }
 
   async onMenuClick() {
-    // this.buttonService.playButtonClickSound();
-    // const modal = await this.modalController.create({
-    //   component: MenuComponent,
-    //   cssClass: 'menu-modal'
-    // });
-    // return await modal.present();
+    this.buttonService.playButtonClickSound();
+    const modal = await this.modalController.create({
+      component: MenuComponent,
+      cssClass: 'menu-modal'
+    });
+    return await modal.present();
 
     this.waoko()
   }
