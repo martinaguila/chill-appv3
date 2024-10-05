@@ -32,23 +32,6 @@ export class BgMusicService {
   }
 
   play() {
-    // if (!this.isMusicLoaded) {
-    //   alert('Background music is not loaded yet.');
-    //   return;
-    // }
-
-    // // NativeAudio.loop('bgMusic').then(() => {
-    // //   NativeAudio.setVolume({
-    // //     assetId: 'bgMusic',
-    // //     volume: 1,
-    // //   });
-    // //   console.log('Background music started successfully.');
-    // // }).catch(error => {
-    // //   console.error('Failed to start background music', error);
-    // // });
-    // NativeAudio.loop({
-    //   assetId: 'bgMusic'
-    // });
     this.bgSound.play();
     this.bgSound.loop = true;
   }
@@ -63,15 +46,18 @@ export class BgMusicService {
   }
 
   unMute() {
-    // NativeAudio.setVolume({
-    //   assetId: 'bgMusic',
-    //   volume: 1,
-    // });
     if (this.isMuted) {
       this.bgSound.volume = this.savedVolume; // Restore saved volume
       this.isMuted = false;
       console.log('Background music unmuted.');
     }
+  }
 
+  reduceVolume() {
+    this.bgSound.volume = 0.1;
+  }
+  
+  restoreVolume() {
+    this.bgSound.volume = 1;
   }
 }

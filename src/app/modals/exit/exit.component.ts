@@ -23,7 +23,6 @@ export class ExitComponent  implements OnInit {
       
     // });
     if (this.shouldExitApp()) {
-      alert("here");
       (navigator as any).app.exitApp();  // This will close the app
     } else {
       console.log('Back button pressed, but not exiting');

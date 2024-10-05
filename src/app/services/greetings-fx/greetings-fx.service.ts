@@ -16,4 +16,11 @@ export class GreetingsFxService {
     this.buttonSound.src = `assets/sounds/${value}`;
     this.buttonSound.play();
   }
+
+  stopButtonClickSound(value: string) {
+    this.buttonSound.src = `assets/sounds/${value}`;
+
+    this.buttonSound.pause();
+  this.buttonSound.currentTime = 0;
+  }
 }

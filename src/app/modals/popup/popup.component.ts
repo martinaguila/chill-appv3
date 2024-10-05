@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
+import { ButtonFxService } from 'src/app/services/button-fx/button-fx.service';
 
 @Component({
   selector: 'app-popup',
@@ -15,7 +16,8 @@ export class PopupComponent  implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private buttonService: ButtonFxService
   ) {
     this.paramIndex = this.navParams.get('paramIndex');
    }
@@ -29,6 +31,7 @@ export class PopupComponent  implements OnInit {
   }
 
   close() {
+    this.buttonService.playButtonClickSound();
     this.modalController.dismiss();
   }
 

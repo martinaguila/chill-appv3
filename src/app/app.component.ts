@@ -61,19 +61,20 @@ export class AppComponent {
   }
 
   handleBackButton() {
-    // alert(456)
     this.platform.backButton.subscribeWithPriority(10, () => {
-      alert('Back button pressed');
       this.displayExitModal()
     });
   }
 
   async displayExitModal() {
-    alert("modal")
     const modal = await this.modalController.create({
       component: ExitComponent,
       cssClass: 'exit-modal',
     });
-    await modal.present(); // Present the modal
+    await modal.present();
+
+    setTimeout(async () => {
+      this.greetingsFxService.playButtonClickSound("exit.mp3");  
+    }, 200);
   }
 }

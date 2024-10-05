@@ -8,6 +8,8 @@ import { CustomSearchService } from 'src/app/services/custom-search/custom-searc
 import { ResultComponent } from '../result/result.component';
 import { ConfettiComponent } from '../confetti/confetti.component';
 import { ExitComponent } from '../exit/exit.component';
+import { ErrorComponent } from '../error/error.component';
+import { SpeakComponent } from '../speak/speak.component';
 
 @Component({
   selector: 'app-welcome',
@@ -82,6 +84,26 @@ export class WelcomeComponent  implements OnInit {
     //   cssClass: 'exit-modal',
     // });
     // await modal.present(); // Present the modal
+
+    // this.greetingsFxService.playButtonClickSound("try-again.mp3");  
+
+    // setTimeout(async () => {
+    //   const modal = await this.modalController.create({
+    //     component: ErrorComponent,
+    //     cssClass: 'exit-modal',
+    //     componentProps: {
+    //       paramMessage: "Cannot recognize clearly. Please try again."
+    //     }
+    //   });
+    //   await modal.present(); // Present the modal after 1 second
+    // }, 1000); // Delay for 1 second (1000 milliseconds)
+
+    // const modal = await this.modalController.create({
+    //   component: SpeakComponent,
+    //   cssClass: 'loader-modal',
+    // });
+    // await modal.present(); // Present the modal
+
   }
 
   async wakoko(searchResult: any) {
