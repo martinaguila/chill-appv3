@@ -16,7 +16,7 @@ export class MenuComponent  implements OnInit {
     private modalController: ModalController,
     private buttonService: ButtonFxService,
     private greetingsFxService: GreetingsFxService,
-    private bgMusicCervice: BgMusicService
+    private bgMusicService: BgMusicService
   ) { }
 
   ngOnInit() {}
@@ -29,14 +29,14 @@ export class MenuComponent  implements OnInit {
   async openModal(index: number) {
     let mp3 = index === 1 ? "about.mp3" : "mechanics.mp3";
 
-    this.bgMusicCervice.reduceVolume();
+    this.bgMusicService.reduceVolume();
     if (index === 1) {
       setTimeout(async () => {
-        this.bgMusicCervice.restoreVolume();
+        this.bgMusicService.restoreVolume();
       }, 13000);
     } else {
       setTimeout(async () => {
-        this.bgMusicCervice.restoreVolume();
+        this.bgMusicService.restoreVolume();
       }, 18000);
     }
 
@@ -48,17 +48,14 @@ export class MenuComponent  implements OnInit {
         paramIndex: index
       }
     });
-    await modal.present(); // Present the modal
-
-    // mechanics 18
-    // about 13
+    await modal.present();
     
     setTimeout(async () => {
       this.greetingsFxService.playButtonClickSound(mp3);  
     }, 200);
 
     modal.onDidDismiss().then(() => {
-      this.bgMusicCervice.restoreVolume();
+      this.bgMusicService.restoreVolume();
       this.greetingsFxService.stopButtonClickSound(mp3);
     });
   }

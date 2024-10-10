@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <div *ngIf="!recording">
+  <div *ngIf="!isGuessCorrect && !isDisabled">
     <div class="button-holder">
       <div class="img-holder" (click)="startRecognition()">
         <img class="top-img" src="../../../assets/images/mic.png" alt="">
@@ -42,9 +42,9 @@
     </div>
   </div>
 
-  <div *ngIf="recording">
+  <div *ngIf="!isGuessCorrect && isDisabled">
     <div class="button-holder">
-      <div class="img-holder" (click)="stopRecognition()">
+      <div class="img-holder">
         <img class="top-img" src="../../../assets/images/mic-muted.png" alt="">
       </div>
     </div>

@@ -113,14 +113,15 @@ export class PictureComponent  implements OnInit {
         source: CameraSource.Camera,
         resultType: CameraResultType.Base64,
       });
-
+  
       this.base64Image = `data:image/jpeg;base64,${image.base64String}`;
       this.getVisionResult(this.base64Image);
-
+  
     } catch (error) {
-      console.error('Error taking picture', error);
+      this.modalController.dismiss();
     }
   }
+  
 
   private getVisionResult(base64Image: string): void {
     this.openLoader();

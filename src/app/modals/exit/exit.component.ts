@@ -19,11 +19,9 @@ export class ExitComponent  implements OnInit {
 
   exit() {
     this.buttonService.playButtonClickSound();
-    // this.platform.backButton.subscribeWithPriority(10, () => {
-      
-    // });
+
     if (this.shouldExitApp()) {
-      (navigator as any).app.exitApp();  // This will close the app
+      (navigator as any).app.exitApp();
     } else {
       console.log('Back button pressed, but not exiting');
     }
@@ -35,7 +33,7 @@ export class ExitComponent  implements OnInit {
 
   close() {
     this.buttonService.playButtonClickSound();
-    this.modalController.dismiss(); // Close the modal
+    this.modalController.dismiss();
   }
 
 }

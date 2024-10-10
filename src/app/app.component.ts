@@ -72,9 +72,13 @@ export class AppComponent {
       cssClass: 'exit-modal',
     });
     await modal.present();
-
+    
     setTimeout(async () => {
-      this.greetingsFxService.playButtonClickSound("exit.mp3");  
+      this.bgMusicService.reduceVolume();
+      this.greetingsFxService.playButtonClickSound("exit.mp3"); 
+      setTimeout(async () => {
+        this.bgMusicService.restoreVolume();
+      }, 1200);
     }, 200);
   }
 }
